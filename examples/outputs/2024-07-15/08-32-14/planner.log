@@ -1,0 +1,25 @@
+[2024-07-15 08:32:29,445][zerorpc.core][ERROR] - 
+Traceback (most recent call last):
+  File "/home/devin/.conda/envs/isaac/lib/python3.8/site-packages/zerorpc/core.py", line 153, in _async_task
+    functor.pattern.process_call(self._context, bufchan, event, functor)
+  File "/home/devin/.conda/envs/isaac/lib/python3.8/site-packages/zerorpc/patterns.py", line 30, in process_call
+    result = functor(*req_event.args)
+  File "/home/devin/.conda/envs/isaac/lib/python3.8/site-packages/zerorpc/decorators.py", line 44, in __call__
+    return self._functor(*args, **kargs)
+  File "/home/devin/IsaacProjects/mppi-isaac/mppiisaac/planner/mppi_isaac.py", line 109, in compute_action_tensor
+    return self.command()
+  File "/home/devin/IsaacProjects/mppi-isaac/mppiisaac/planner/mppi_isaac.py", line 112, in command
+    return torch_to_bytes(self.mppi.command(self.state_place_holder))
+  File "/home/devin/.conda/envs/isaac/lib/python3.8/site-packages/mppi_torch/mppi.py", line 312, in command
+    cost_total = self._compute_total_cost_batch_halton()
+  File "/home/devin/.conda/envs/isaac/lib/python3.8/site-packages/mppi_torch/mppi.py", line 525, in _compute_total_cost_batch_halton
+    self.cost_total, self.states, self.actions = self._compute_rollout_costs(self.perturbed_action)
+  File "/home/devin/.conda/envs/isaac/lib/python3.8/site-packages/mppi_torch/mppi.py", line 383, in _compute_rollout_costs
+    state, u = self._dynamics(state, u, t)
+  File "/home/devin/.conda/envs/isaac/lib/python3.8/site-packages/mppi_torch/mppi.py", line 225, in _dynamics
+    return self.dynamics(state, u, t=None)
+  File "/home/devin/IsaacProjects/mppi-isaac/mppiisaac/planner/mppi_isaac.py", line 60, in dynamics
+    self.sim.apply_robot_cmd(u)
+  File "/home/devin/IsaacProjects/mppi-isaac/mppiisaac/planner/isaacgym_wrapper.py", line 555, in apply_robot_cmd
+    u[:, i] = u_desired[:, u_desired_idx]
+IndexError: index 9 is out of bounds for dimension 1 with size 9
